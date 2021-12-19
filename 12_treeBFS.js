@@ -14,8 +14,46 @@ breadth first search from the start vertex(parameter 'node')
 
 */
 
+// first resolution (mine)
+// let bfs = function (node) {
+//   // bfs 탐색, 시작점 node (값)
+
+//   // 탐색queue, while loop
+
+//   let queue = [node];
+//   let result = [];
+
+//   while (queue.length) {
+//     let currVertex = queue.shift();
+//     result.push(currVertex.value); // 시작점 노드 값 저장
+
+//     // 자식 노드 탐색 - 반복 (for loop)
+//     for (let nextVertex of currVertex.children) {
+//       queue.push(nextVertex);
+//     }
+//   }
+//   return result;
+// };
+
+// reference
 let bfs = function (node) {
-};
+  let values = []; // to return
+
+  let queue = [node]; // 탐색할 시작점 노드 추가
+  
+  while (queue.length > 0) { // 탐색 루프
+    let currentVertex = queue[0]; // 현재 기준점
+    queue = queue.slice(1); // 탐색 큐 업데이트
+
+    values.push(currentVertex.value); // 현재 탐색 노드 값 리턴 배열에 추가
+
+    // console.log(currentVertex.children);
+    currentVertex.children.forEach((childNode) => queue.push(childNode)); // 자식 노드 배열 탐색 대기열에 추가
+  }
+  return values;
+}
+/*
+*/
 
 // * 이 아래 코드는 변경하지 않아도 됩니다. 자유롭게 참고하세요.
 let Node = function (value) {
